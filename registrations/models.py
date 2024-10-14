@@ -5,9 +5,20 @@ from . import variables_choices
 
 # Create your models here.
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.PROTECT, related_name="perfil", verbose_name="Usuário")
-    place = models.ForeignKey("Place", on_delete=models.PROTECT,null=True, blank=True, related_name="perfis", verbose_name="Local de lotação")
-    phone_number = models.CharField(max_length=30, null=True, blank=True, verbose_name="Número de telefone")
+    user = models.OneToOneField(
+        User, on_delete=models.PROTECT, related_name="perfil", verbose_name="Usuário"
+    )
+    place = models.ForeignKey(
+        "Place",
+        on_delete=models.PROTECT,
+        null=True,
+        blank=True,
+        related_name="perfis",
+        verbose_name="Local de lotação",
+    )
+    phone_number = models.CharField(
+        max_length=30, null=True, blank=True, verbose_name="Número de telefone"
+    )
     registration_number = models.CharField(
         max_length=30, verbose_name="CPF ou CNPJ", default="SEM CADASTRO"
     )
