@@ -31,9 +31,9 @@ class PlaceRetrieveUpdateDestroyApiView(RetrieveUpdateAPIView):
 
 class SupplierListCreateApiView(ListCreateAPIView):
     queryset = Supplier.objects.all()
-    serializer_class = PlaceModelSerializer
+    serializer_class = SupplierModelSerializer
 
 
 class SupplierRetrieveUpdateDestroyApiView(RetrieveUpdateAPIView):
     queryset = Supplier.objects.all()
-    serializer_class = PlaceModelSerializer
+    serializer_class = SupplierModelSerializer
