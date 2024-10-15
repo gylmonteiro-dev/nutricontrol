@@ -1,5 +1,5 @@
 UNIT_OF_MEASUREMENT = (
-    ("kg", "Kilograma"),
+    ("kg", "Quilograma"),
     ("g", "Grama"),
     ("un", "Unidade"),
     ("litro", "Litro"),
