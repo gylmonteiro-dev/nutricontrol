@@ -14,7 +14,7 @@ class ProductEntry(models.Model):
     )
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Preço")
     amount = models.IntegerField(
-        validators=MinValueValidator(1), verbose_name="Quantidade"
+        validators=[MinValueValidator(1, 'Não pode ser menor que 1')], verbose_name="Quantidade"
     )
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Data de criação")
     update_at = models.DateTimeField(auto_now=True, verbose_name="Data de atualização")
@@ -40,4 +40,4 @@ class StockEntry(models.Model):
     update_at = models.DateTimeField(auto_now=True, verbose_name="Data de atualização")
 
     def __str__(self) -> str:
-        return self.id
+        return f"{self.id}"
