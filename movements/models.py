@@ -20,6 +20,9 @@ class ProductEntry(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Data de criação")
     update_at = models.DateTimeField(auto_now=True, verbose_name="Data de atualização")
 
+    class Meta:
+        ordering = ["-update_at"]
+
     def __str__(self) -> str:
         return f"{self.product} | {self.amount}.{self.product.unit_of_measurement}"
 

@@ -22,5 +22,5 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     # API V1
     path("api/v1/", include("registrations.urls")),
-    path("api/vi/", include("movements.urls"))
+    path("api/v1/", include("movements.urls"))
 ]
