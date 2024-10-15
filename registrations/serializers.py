@@ -6,14 +6,14 @@ class PlaceModelSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Place
-        fields = "__all__"
+        fields = ["id", "name", "registration_number"]
 
 
 class ProductModelSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Product
-        fields = "__all__"
+        fields = ["id", "name"]
 
 
 class ProfileModelSerializer(serializers.ModelSerializer):
@@ -27,4 +27,4 @@ class SupplierModelSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Supplier
-        fields = "__all__"
+        fields = ["id", "name", "registration_number"]
