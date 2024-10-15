@@ -1,7 +1,9 @@
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from .models import ProductEntry, StockEntry
 from .serializers import ProductyEntryModelSerializer, StockEntryModelSerializer
+
 # Create your views here.
+
 
 class ProductEntryLisctCreateApiView(ListCreateAPIView):
     queryset = ProductEntry.objects.all()

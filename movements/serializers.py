@@ -12,5 +12,5 @@ class ProductyEntryModelSerializer(serializers.ModelSerializer):
 class StockEntryModelSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model =  StockEntry
+        model = StockEntry
         fields = "__all__"
