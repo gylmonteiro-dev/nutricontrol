@@ -26,7 +26,7 @@ urlpatterns = [
     ),
     # Suppliers URLs
     path(
-        "suplliers/",
+        "suppliers/",
         views.SupplierListCreateApiView.as_view(),
         name="supplier-list-create",
     ),

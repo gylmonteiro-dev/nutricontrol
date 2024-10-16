@@ -44,4 +44,19 @@ class StockEntry(models.Model):
     update_at = models.DateTimeField(auto_now=True, verbose_name="Data de atualização")
 
     def __str__(self) -> str:
-        return f"{self.id}"
+        return f"{self.id}"  
+
+
+class StockOut(models.Model):
+    place = models.ForeignKey(
+        Place, on_delete=models.PROTECT, related_name="exits", verbose_name="Local"
+    )
+    output_type = models.CharField(max_length=10,verbose_name="Tipo de saída")
+    list_products = models.ManyToManyField(
+        ProductEntry, related_name="entries", verbose_name="Lista de Produtos"
+    )
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Data de criação")
+    update_at = models.DateTimeField(auto_now=True, verbose_name="Data de atualização")
+    
+    def __str__(self):
+        return f"{self.place} - {self.output_type}"
