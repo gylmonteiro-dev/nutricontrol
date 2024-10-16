@@ -5,7 +5,7 @@ from .serializers import ProductyEntryModelSerializer, StockEntryModelSerializer
 # Create your views here.
 
 
-class ProductEntryLisctCreateApiView(ListCreateAPIView):
+class ProductEntryListCreateApiView(ListCreateAPIView):
     queryset = ProductEntry.objects.all()
     serializer_class = ProductyEntryModelSerializer
 
