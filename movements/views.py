@@ -15,7 +15,7 @@ class ProductEntryRetrieveUpdateDestroyApiView(RetrieveUpdateDestroyAPIView):
     serializer_class = ProductyEntryModelSerializer
 
 
-class StockEntryLisctCreateApiView(ListCreateAPIView):
+class StockEntryListCreateApiView(ListCreateAPIView):
     queryset = StockEntry.objects.all()
     serializer_class = StockEntryModelSerializer
 
