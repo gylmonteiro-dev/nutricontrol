@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import ProductEntry, StockEntry
+from .models import ProductEntry, StockEntry, StockOut
 from registrations.serializers import ProductModelSerializer, PlaceModelSerializer, SupplierModelSerializer
 
 class ProductyEntryModelSerializer(serializers.ModelSerializer):
@@ -37,3 +37,8 @@ class StockEntryModelSerializer(serializers.ModelSerializer):
         return total
 
     
+class StockOutModelSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = StockOut
+        fields = "__all__"

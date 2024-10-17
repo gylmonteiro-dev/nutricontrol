@@ -25,7 +25,7 @@ class ProductEntry(models.Model):
         ordering = ["-update_at"]
 
     def __str__(self) -> str:
-        return f"{self.product} | {self.amount}.{self.product.unit_of_measurement}"
+        return f"{self.product} | {self.amount}{self.product.unit_of_measurement}"
 
 
 class StockEntry(models.Model):
@@ -45,20 +45,21 @@ class StockEntry(models.Model):
     update_at = models.DateTimeField(auto_now=True, verbose_name="Data de atualização")
 
     def __str__(self) -> str:
-        return f"{self.id}"  
+        return f"{self.id} - {self.place}"  
 
 
 class StockOut(models.Model):
     place = models.ForeignKey(
         Place, on_delete=models.PROTECT, related_name="exits", verbose_name="Local"
     )
-    output_type = models.CharField(max_length=10,choices=variables_choices.OUT_TYPE, verbose_name="Tipo de saída")
+    output_type = models.CharField(max_length=10,choices=variables_choices.OUTPUT_TYPE, verbose_name="Tipo de saída")
     description = models.TextField()
     list_products = models.ManyToManyField(
-        ProductEntry, related_name="entries", verbose_name="Lista de Produtos"
+        ProductEntry, related_name="outs", verbose_name="Lista de Produtos"
     )
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Data de criação")
     update_at = models.DateTimeField(auto_now=True, verbose_name="Data de atualização")
     
     def __str__(self):
         return f"{self.place} - {self.output_type}"
+
