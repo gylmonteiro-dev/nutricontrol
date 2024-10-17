@@ -1,6 +1,7 @@
 from django.db import models
 from django.core.validators import MinValueValidator
 from registrations.models import Place, Supplier, Product
+from . import variables_choices
 
 # Create your models here.
 
@@ -51,7 +52,8 @@ class StockOut(models.Model):
     place = models.ForeignKey(
         Place, on_delete=models.PROTECT, related_name="exits", verbose_name="Local"
     )
-    output_type = models.CharField(max_length=10,verbose_name="Tipo de saída")
+    output_type = models.CharField(max_length=10,choices=variables_choices.OUT_TYPE, verbose_name="Tipo de saída")
+    description = models.TextField()
     list_products = models.ManyToManyField(
         ProductEntry, related_name="entries", verbose_name="Lista de Produtos"
     )
