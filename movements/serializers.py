@@ -37,8 +37,3 @@ class StockEntryModelSerializer(serializers.ModelSerializer):
         return total
 
     
-class StockOutModelSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = StockOut
-        fields = "__all__"
