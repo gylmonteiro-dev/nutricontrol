@@ -1,6 +1,10 @@
 from rest_framework import serializers
 from .models import ProductEntry, StockEntry, StockOut
+from registrations.models import Product
 from registrations.serializers import ProductModelSerializer, PlaceModelSerializer, SupplierModelSerializer
+
+
+
 
 class ProductyEntryModelSerializer(serializers.ModelSerializer):
     product = ProductModelSerializer()
@@ -10,6 +14,7 @@ class ProductyEntryModelSerializer(serializers.ModelSerializer):
         fields = ["id", "product", "price", "amount", "total_value"]
 
     
+
     def get_total_value(self, instance):
         total = instance.price * instance.amount
         return total

@@ -28,7 +28,7 @@ class Profile(models.Model):
 
 
 class Product(models.Model):
-    name = models.CharField(max_length=200, verbose_name="Nome")
+    name = models.CharField(max_length=200, verbose_name="Nome", unique=True)
     unit_of_measurement = models.CharField(
         max_length=10,
         choices=variables_choices.UNIT_OF_MEASUREMENT,

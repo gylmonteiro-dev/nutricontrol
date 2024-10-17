@@ -1,4 +1,4 @@
-from rest_framework.generics import ListCreateAPIView, RetrieveUpdateAPIView
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from .models import Place, Product, Supplier
 from .serializers import (
     ProductModelSerializer,
@@ -14,7 +14,7 @@ class ProductListCreateApiView(ListCreateAPIView):
     serializer_class = ProductModelSerializer
 
 
-class ProductRetrieveUpdateDestroyApiView(RetrieveUpdateAPIView):
+class ProductRetrieveUpdateDestroyApiView(RetrieveUpdateDestroyAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductModelSerializer
 
@@ -24,7 +24,7 @@ class PlaceListCreateApiView(ListCreateAPIView):
     serializer_class = PlaceModelSerializer
 
 
-class PlaceRetrieveUpdateDestroyApiView(RetrieveUpdateAPIView):
+class PlaceRetrieveUpdateDestroyApiView(RetrieveUpdateDestroyAPIView):
     queryset = Place.objects.all()
     serializer_class = PlaceModelSerializer
 
@@ -34,6 +34,6 @@ class SupplierListCreateApiView(ListCreateAPIView):
     serializer_class = SupplierModelSerializer
 
 
-class SupplierRetrieveUpdateDestroyApiView(RetrieveUpdateAPIView):
+class SupplierRetrieveUpdateDestroyApiView(RetrieveUpdateDestroyAPIView):
     queryset = Supplier.objects.all()
     serializer_class = SupplierModelSerializer
