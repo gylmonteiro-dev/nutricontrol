@@ -3,19 +3,20 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from .models import ProductEntry, StockEntry, StockOut
-from .serializers import ProductyEntryModelSerializer, StockEntryModelSerializer
+from .serializers import ProductEntryModelSerializer, StockEntryModelSerializer
 
 # Create your views here.
 
 
 class ProductEntryListCreateApiView(ListCreateAPIView):
     queryset = ProductEntry.objects.all()
-    serializer_class = ProductyEntryModelSerializer
+    serializer_class = ProductEntryModelSerializer
+
 
 
 class ProductEntryRetrieveUpdateDestroyApiView(RetrieveUpdateDestroyAPIView):
     queryset = ProductEntry.objects.all()
-    serializer_class = ProductyEntryModelSerializer
+    serializer_class = ProductEntryModelSerializer
 
 
 class StockEntryListCreateApiView(ListCreateAPIView):
