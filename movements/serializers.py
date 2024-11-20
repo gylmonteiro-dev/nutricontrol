@@ -17,6 +17,7 @@ class ProductEntryModelSerializer(serializers.ModelSerializer):
             "price",
             "amount",
             "total_value",
+
         ]
 
     def create(self, validated_data):
@@ -24,32 +25,66 @@ class ProductEntryModelSerializer(serializers.ModelSerializer):
         product = Product.objects.get(pk=product_id)
         validated_data["product"] = product
         return super().create(validated_data)
-    
-    
+
     def get_total_value(self, instance):
         total = instance.price * instance.amount
         return total
 
 
 class StockEntryModelSerializer(serializers.ModelSerializer):
-    place  = PlaceModelSerializer()
-    supplier = SupplierModelSerializer()
-    list_products = ProductEntryModelSerializer(many=True)
+    place  = PlaceModelSerializer(read_only=True)
+    place_id = serializers.IntegerField(write_only=True)
+    supplier = SupplierModelSerializer(read_only=True)
+    supplier_id = serializers.IntegerField(write_only=True)
+    list_products = ProductEntryModelSerializer(many=True, read_only=True)
+    list_products_ids = serializers.ListField(write_only=True)
     total_value = serializers.SerializerMethodField(read_only=True)
-
 
     class Meta:
         model = StockEntry
-        fields = ["id", "place", "supplier", "list_products", "total_value"]
+        fields = [
+            "id",
+            "place",
+            "place_id",
+            "supplier",
+            "supplier_id",
+            "list_products",
+            "list_products_ids",
+            "total_value",
+            "update_at",
+        ]
 
-    
+    def create(self, validated_data):
+        # Place
+        place_id = validated_data.pop("place_id")
+        validated_data["place_id"] = place_id
+        print(place_id)
+        # Supplier
+        supplier_id = validated_data.pop("supplier_id")
+        validated_data["supplier_id"] = supplier_id
+        print(supplier_id)
+        # List products
+        list_products_ids = validated_data.pop("list_products_ids")
+        list_products = [ProductEntry.objects.get(pk=id) for id in list_products_ids]
+        validated_data["list_products"] = list_products
+
+        return super().create(validated_data)
+
+    def update(self, instance, validated_data):
+        if validated_data.get("list_products_ids"):
+            list_products_ids = validated_data.pop('list_products_ids')
+            list_products = [ProductEntry.objects.get(pk=id) for id in list_products_ids]
+            validated_data["list_products"] = list_products
+            return super().update(instance, validated_data)
+        return super().update(instance, validated_data)
+
     def get_total_value(self, instance):
         products = instance.list_products.all()
 
         total = 0
         for product in products:
             total += product.price * product.amount
-        
+
         return total
 
 
@@ -71,6 +106,7 @@ class StockOutModelSerializer(serializers.ModelSerializer):
             "list_products",
             "list_products_ids",
             "total_value",
+            "update_at",
         ]
 
     def create(self, validated_data):
